@@ -15,6 +15,8 @@ int Main()
 
     Console.WriteLine($"~{Homework.GetOddSum(arr)}~");
 
+    Console.WriteLine($"~{Homework.SortAndGetMinAndMax(arr)}~");
+
     return 0;
 
 }
@@ -66,4 +68,20 @@ class Homework{
         return foo;
     }
 
+    // Method for finding a difference between max and min elements in an array.
+     public static int SortAndGetMinAndMax(int[] matrix)
+    {
+        int foo = matrix[0], bar = matrix[1];
+
+        for(int i = 0; i < matrix.Length; i++)
+        {
+            if(foo < matrix[i])
+                foo = matrix[i];
+
+            if(bar > matrix[i])
+                bar = matrix[i];
+        }
+        foo -= bar;
+        return foo;
+    }
 }
