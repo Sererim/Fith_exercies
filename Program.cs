@@ -3,6 +3,7 @@ int Main()
 {
 
     ushort size = 5;
+    ushort load = 0;
     
     int[] arr = new int [size];
 
@@ -10,7 +11,9 @@ int Main()
 
     Homework.ShowMatrix(arr);
 
-    Console.WriteLine();
+    Console.WriteLine($"~{Homework.GetEven(arr)}~");
+
+    
     return 0;
 
 }
@@ -38,6 +41,17 @@ class Homework{
         for(int i = 0; i < matrix.Length; i++)
             Console.Write($"|{matrix[i]}| ");
         Console.WriteLine();
+    }
+
+    // Method for counting even numbers
+    public static ushort GetEven(int[] matrix)
+    {
+        ushort foo = 0;
+        foreach(int i in matrix)
+            if(i % 2 == 0)
+                foo++;
+        
+        return foo;
     }
 
 
