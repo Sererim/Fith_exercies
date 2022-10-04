@@ -13,7 +13,8 @@ int Main()
 
     Console.WriteLine($"~{Homework.GetEven(arr)}~");
 
-    
+    Console.WriteLine($"~{Homework.GetOddSum(arr)}~");
+
     return 0;
 
 }
@@ -43,7 +44,7 @@ class Homework{
         Console.WriteLine();
     }
 
-    // Method for counting even numbers
+    // Method for counting even numbers.
     public static ushort GetEven(int[] matrix)
     {
         ushort foo = 0;
@@ -54,5 +55,15 @@ class Homework{
         return foo;
     }
 
+    // Method for finding a sum of numbers at odd positions.
+    public static int GetOddSum(int[] matrix)
+    {
+        int foo = 0;
+        for(int i = 0; i < matrix.Length; i++)
+            if(i % 2 != 0)
+                foo += matrix[i];
+        
+        return foo;
+    }
 
 }
