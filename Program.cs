@@ -136,7 +136,7 @@ class Homework{
 
     public static int[] Find(int[] matrix)
     {
-        int num = 0, place = 0, amount = 0;
+        int num = 0, place = 0, amount = 1;
 
         for(int i = 0; i < matrix.Length; i++)
             if(i < matrix.Length - 2)
