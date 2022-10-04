@@ -1,24 +1,72 @@
 ﻿
 int Main()
 {
-
     ushort size = 5;
-    ushort load = 0;
-    
+    string key = "0";
     int[] arr = new int [size];
+    int[] find = new int [3];
+    while(true)
+    {
 
-    arr = Homework.GetMatrix(size);
+        Console.WriteLine("Enter size of an array.");
+        key = Console.ReadLine();
+        size = System.UInt16.Parse(key);
+        
+        Console.WriteLine("Enter 'Y' if you want to manualy fill an array with numbers.");
+        key = Console.ReadLine();
+        if(key == "Y" || key == "y")
+        {
+            Console.WriteLine("Enter numbers to fill the array.");
+            for(int i = 0; i < arr.Length; i++)
+            {
+                key = Console.ReadLine();
+                arr[i] = System.Int32.Parse(key);
+            }
+        }
+        else
+            arr = Homework.GetMatrix(size);
 
-    Homework.ShowMatrix(arr);
+        Console.WriteLine("Enter 1 to find how many even numbers are in the array.\n" +
+        "Enter 2 to find a sum of elements on odd positions.\n" +
+        "Enter 3 to find a difference between min and max value of elements in the array.\n" +
+        "Enter 4 to find the longest series of numbers in the array.\n" +
+        "\u001b[31mWarning if numbers in the array were randomly generated no series of number is present.\u001b[0m\n" + 
+        "Enter 0 to terminate a program.");
 
-    Console.WriteLine($"~{Homework.GetEven(arr)}~");
+        key = Console.ReadLine();
 
-    Console.WriteLine($"~{Homework.GetOddSum(arr)}~");
+        switch(key)
+        {
+            case "1":
+                Homework.ShowMatrix(arr);
+                Console.WriteLine($"~{Homework.GetEven(arr)}~");
+                break;
 
-    Console.WriteLine($"~{Homework.SortAndGetMinAndMax(arr)}~");
+            case "2":
+                Homework.ShowMatrix(arr);
+                Console.WriteLine($"~{Homework.GetOddSum(arr)}~");
+                break;
 
-    return 0;
+            case "3":
+                Homework.ShowMatrix(arr);
+                Console.WriteLine($"~{Homework.GetMinAndMax(arr)}~");
+                break;
 
+            case "4":
+                Homework.ShowMatrix(arr);
+                find = Homework.Find(arr);
+                Console.WriteLine($"Number is {find[0]}\nPlace of the number is {find[1]}\nAmount of number is {find[2]}");
+                break;
+
+            case "0":
+                return 0;
+
+            default:
+                Main();
+                break;
+        }
+        Main();
+    }
 }
 
 Main();
@@ -69,7 +117,7 @@ class Homework{
     }
 
     // Method for finding a difference between max and min elements in an array.
-     public static int SortAndGetMinAndMax(int[] matrix)
+     public static int GetMinAndMax(int[] matrix)
     {
         int foo = matrix[0], bar = matrix[1];
 
@@ -83,5 +131,24 @@ class Homework{
         }
         foo -= bar;
         return foo;
+    }
+
+
+    public static int[] Find(int[] matrix)
+    {
+        int num = 0, place = 0, amount = 0;
+
+        for(int i = 0; i < matrix.Length; i++)
+            if(i < matrix.Length - 2)
+                if(matrix[i] == matrix[i+1])
+                {
+                    num = matrix[i];
+                    place = i;
+                    amount++;
+                }
+    int[] answer = new int[3] {num,place,amount};
+
+    return answer;
+
     }
 }
